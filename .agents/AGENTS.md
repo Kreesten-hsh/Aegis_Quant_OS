@@ -63,6 +63,7 @@ Le projet avance uniquement lorsqu'une hypothèse est validée ou rejetée avec 
 4. **Règle 4 - Validation par les Tests Effectifs** : Tout composant doit posséder une suite de tests unitaires exécutables qui valident le comportement réel (les mocks à `passed=True` ou tests non exécutés comptent comme absence de test).
 5. **Règle 5 - Documentation-Driven Development Verified** : Toute affirmation d'état dans `docs/` doit citer un `fichier:ligne` vérifiable ou porter un marqueur d'audit mesurable.
 6. **Règle 6 - Traçabilité Totale des Décisions** : Chaque cycle d'évaluation ou trade doit être traçable via un hash de commit `git_version` et un hash de données `data_hash`.
+7. **Règle 7 - Pivot v2.0** : Le pipeline cognitif sémantique (ADR 0032) applique strictement la Règle 2 (aucun LLM dans le chemin critique) et la Règle 6bis (aucun ré-entraînement de poids, RAG contextuel uniquement — voir `docs/RAG_LEARNING_LOOP_SPEC.md`). Toute proposition de trade du LLM passe par le gate déterministe du Module 1 avant exécution, sans exception.
 
 ---
 

@@ -1,4 +1,6 @@
-# Matrice des Dépendances (Dependency Matrix)
+# Matrice de Dépendances du Projet (Phase 2 & v2.0)
+
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : La matrice de dépendances est conservée pour la traçabilité du projet. Pour la cartographie de réutilisation V2.0, consulter l'[`ADR 0032 §3`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
 
 > **Document réécrit le 2026-07-31** sur la base de `docs/refont/AUDIT_COMPLET_2026-07-31.md` (verdict **NO-GO**).
 > La version précédente marquait 5 paquets « Intégré ». Mesure par grep : « présent dans le dépôt »

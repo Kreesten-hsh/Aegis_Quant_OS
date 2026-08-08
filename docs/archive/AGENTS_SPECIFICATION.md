@@ -42,9 +42,11 @@ une constante, un mock ou du bruit au lieu de calculer.
 
 **Aucun agent `[VALIDÉ]` au 2026-07-31.** Zéro agent produit un vote issu d'une donnée de marché réelle.
 
-## Spécification de conception (inchangée)
+## Agent Specifications & RL Roles (Historical Archive)
 
-Les huit sections ci-dessous décrivent l'**intention** de chaque agent. Elles restent la référence de
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancienne spécification des agents (incluant FinRL et l'ancien comite RL). Remplacé par les spécifications v2.0. Consulter [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md).
+
+Les huit sections ci-dessous descrivent l'**intention** de chaque agent. Elles restent la référence de
 conception ; seules les mentions de technologies déjà mesurées comme absentes sont annotées.
 
 ## 1. Trend Agent

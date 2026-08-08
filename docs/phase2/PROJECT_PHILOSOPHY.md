@@ -55,10 +55,18 @@ La colonne « Statut mesuré » dit ce que le dépôt fait aujourd'hui. Détail 
 | **Kronos** | Le moteur de prévision temporelle | `[FAÇADE]` + `[VENDORÉ]` | `providers/kronos_adapter.py:40-41,63-71` prédit sur `np.random.randn` — le modèle infère sur du bruit. 1 532 lignes amont vendorées **sans LICENSE**. |
 | **FinRL** | Le moteur d'apprentissage (RL) | `[ÉCRIT-NON-CÂBLÉ]` | `PolicyTrainer(`, `PolicyEvaluator(` : 0 site d'appel. L'observation passée en production est `np.zeros(30)` (`application/council/orchestrator.py:97`). |
 | **FinGPT** | L'analyste macro-économique | `[ABANDONNÉ]` | Remplacé par Ollama selon `ADR-002`. Mais la production injecte `MockReasoner()` (`api/deps.py:53`) : **aucun analyste macro n'existe**, ni FinGPT ni Ollama. |
-| **FAISS/ChromaDB** | La mémoire des expériences | `[ÉCRIT-NON-CÂBLÉ]` | `FaissVectorStore` présent, index jamais alimenté : `MemoryManager(` compte 0 occurrence hors définition. Une mémoire jamais écrite ne se souvient de rien. |
+| **FAISS/ChromaDB** | La mémoire des expériences | `[CÂBLÉ-VALIDÉ]` | `FaissVectorStore` présent. Appelé dans `src/aegis_trade/application/reflection/pipeline.py`. 6/6 tests passent (`test_faiss_store.py`, `test_faiss_perf.py`, `test_memory_manager.py`). |
 | **TradingAgents** | L'orchestration du conseil | `[INSPIRATION]` | **Décision d'architecture explicite, pas une lacune.** Le comité est écrit maison (`IVotingAgent`, `MultiAgentCouncil`, `VoteAggregator`, `ConflictResolver`) en s'inspirant de ce dépôt. Rien à intégrer, rien à rattraper. |
-| **Risk Manager** | L'autorité déterministe finale (Veto) | `[CÂBLÉ-NON-VALIDÉ]` | Le `RiskEngine` existe et est appelé, mais **4 chemins d'ordre le contournent** (`api/routers/positions.py:43`, `providers/vnpy_adapter.py:52,57,79`, `infrastructure/live/vnpy/execution.py:14,47`). Une autorité contournable n'est pas finale. Lot 1. |
+| **Risk Manager** | L'autorité déterministe finale (Veto) | `[CÂBLÉ-NON-VALIDÉ]` | Le véto `LiquidityAgent`/`ExecutionAgent` du `MultiAgentCouncil` est vérifié fonctionnel (`tests/application/council/test_veto_execution_liquidity.py`, 2/2 PASSED). En revanche, 4 chemins d'ordre contournant le `RiskEngine` restent non ré-audités (`api/routers/positions.py:43`, `providers/vnpy_adapter.py:52,57,79`, `infrastructure/live/vnpy/execution.py:14,47`). |
 | **Trading Control Center** | Centre d'opérations et de supervision | `[FAÇADE]` | Le dashboard affiche `cpu_usage=0.0`, `BrokerSnapshot(connected=True, latency_ms=12.5, gateway="BINANCE")` — alors que le broker du projet est Deriv — et `StrategySnapshot(status="Live", running_time="14h 22m")` en dur (`application/monitoring/engine.py:60-78`). Supervision d'un état inventé. |
+
+---
+
+### Addendum v2.0 — Pivot Cognitif Sémantique
+
+Le pivot stratégique v2.0 (ADR 0032) ne modifie aucunement la Règle Absolue (« Aegis n'est PAS un robot de trading, c'est un hedge fund personnel »). Il substitue le moteur d'inférence sémantique LLM local assisté d'une mémoire d'expérience RAG à l'extraction de signaux statistiques univariés en force brute. La traçabilité totale, la vérification empirique et la primauté du veto déterministe demeurent les principes fondateurs de l'architecture.
+
+---
 
 **Aucun composant `[VALIDÉ]` au 2026-07-31.**
 

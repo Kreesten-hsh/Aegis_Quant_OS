@@ -1,4 +1,6 @@
-# Benchmarks et Objectifs Qualitatifs
+# Benchmarks & Validation Metrics (Historical Archive)
+
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document contient les métriques d'évaluation de la Phase 2. Remplacé par [`docs/DEMO_EXIT_CRITERIA.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/DEMO_EXIT_CRITERIA.md) et l'[`ADR 0032`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
 
 > **Document annoté le 2026-07-31** sur la base de `docs/refont/AUDIT_COMPLET_2026-07-31.md` (verdict **NO-GO**).
 >

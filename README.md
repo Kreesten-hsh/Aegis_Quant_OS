@@ -3,7 +3,7 @@
 ![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Architecture](https://img.shields.io/badge/architecture-Clean%20%7C%20Hexagonal-orange)
-![Status](https://img.shields.io/badge/research-concluded%20(216%20hypotheses%20tested)-red)
+![Status](https://img.shields.io/badge/status-pivot--v2.0--cognitive--pipeline--in--progress-orange)
 
 **Aegis Quant OS** est un système de trading quantitatif et d'évaluation d'hypothèses d'alpha d'inspiration institutionnelle. Le système sépare rigoureusement la logique de domaine, les moteurs de risque, les garde-fous d'exécution et les adapteurs d'infrastructure (LLMs, Open-Source ML, Moteurs de Backtest, Broker Gateways).
 
@@ -41,7 +41,7 @@
 - **Langage** : Python 3.11
 - **Architecture** : Clean Architecture / Ports & Adapters
 - **Frameworks Quantitatifs** : `vectorbt`, `pandas-ta-classic`, `scipy`, `numpy`, `pandas`, `lightgbm`
-- **Infrastructure LLM** : Ollama (Adapteur local déterministe avec cache SHA-256)
+- **Infrastructure LLM** : Ollama (Adapteur local déterministe avec cache SHA-256 — Modèle primaire: `llama3.1:8b` / `Q4_K_M`, fallback local: `llama3.2:1b`)
 
 ---
 
@@ -74,13 +74,13 @@
 ## 📂 STRUCTURE DU DÉPÔT ET DECISIONS (ADRs)
 
 - **`src/aegis_trade/`** : Code source (Clean Architecture : `domain/`, `application/`, `infrastructure/`).
-- **`docs/ADR/`** : Registre complet des décisions d'architecture et de recherche (0001 à 0031).
+- **`docs/ADR/`** : Registre complet des décisions d'architecture et de recherche (0001 à 0032).
 - **`docs/refont/BUILD_VS_REUSE.md`** : Matrice de réutilisation des frameworks Open-Source.
 - **`docs/research/`** : Rapports de recherche quantitatifs probants.
 - **`docs/archive/`** : Archives historiques et métadonnées brutes.
 
 ---
 
-## 🎯 PROCHAINE ÉTAPES DE RECHERCHE
+## 🎯 PROCHAINE ÉTAPES DE RECHERCHE — PIVOT V2.0
 
-Prochaine direction en cours d'arbitrage — voir discussion stratégique.
+À la suite de la réfutation empirique des 216 hypothèses statistiques univariées (ADR 0017–0031), Aegis Quant OS pivote vers un **pipeline cognitif sémantique v2.0** piloté par un LLM local autonome sans humain dans la boucle décisionnelle. Le système associe un moteur de raisonnement sémantique prompt-engineeré, une mémoire d'expérience vectorielle (RAG), et le veto déterministe impératif du `MultiAgentCouncil`. Pour plus de détails sur l'audit de réutilisation et l'architecture v2.0, consulter l'[ADR 0032 — Pivot vers le Pipeline Cognitif Sémantique v2.0](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).

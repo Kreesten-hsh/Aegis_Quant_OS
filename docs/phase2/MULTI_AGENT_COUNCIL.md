@@ -1,5 +1,7 @@
 # Spécification du Multi-Agent Council (Déterministe)
 
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Ce composant (`MultiAgentCouncil`) est réutilisé à 100% dans le **Module 1 (Orchestrateur Déterministe)** du pipeline v2.0. Son veto déterministe s'applique strictement APRES la proposition sémantique du LLM (Module 2). Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md).
+
 Le Conseil est un comité de 8 agents fonctionnels isolés, responsables d'une dimension spécifique du marché. Ils ne tradent pas ; ils **votent** (`BUY`, `SELL`, `WAIT`) avec un degré de `Confidence`.
 
 ## 1. Les Rôles (8 Agents)

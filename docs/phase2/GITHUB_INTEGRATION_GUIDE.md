@@ -1,5 +1,7 @@
 # Audit d'Intégration GitHub - Guide Définitif (Deep Audit)
 
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Les règles de gouvernance, de PR et de traçabilité des commits s'appliquent à l'ensemble du développement v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
+
 Ce document détaille l'audit technique de chaque dépôt (actif et inspirationnel) pour l'intégration dans Aegis Quant OS. 
 
 > **Annoté le 2026-07-31** sur la base de `docs/refont/AUDIT_COMPLET_2026-07-31.md` (verdict **NO-GO**).

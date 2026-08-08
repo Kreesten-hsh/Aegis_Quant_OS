@@ -1,4 +1,6 @@
-# Système de Connaissances (Knowledge System)
+# Système de Connaissance & Mémoire RAG (v2.0)
+
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Le système de stockage et de récupération contextuelle s'intègre dans le **Module 3 (Boucle RAG)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/RAG_LEARNING_LOOP_SPEC.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/RAG_LEARNING_LOOP_SPEC.md).
 
 Le Système de Connaissances (Knowledge System) est le cerveau analytique d'Aegis Quant OS. Il transforme les expériences de marché brutes (les trades passés) en règles métier exploitables, statistiques, versionnées et vérifiables.
 

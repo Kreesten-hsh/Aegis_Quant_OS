@@ -1,4 +1,6 @@
-# Spécification de la Mémoire d'Expérience (Experience Memory)
+# Spécification de la Mémoire d'Expérience (FAISS / RAG)
+
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : La mémoire d'expérience et l'index vectoriel `FaissVectorStore` sont réutilisés dans le **Module 3 (Boucle RAG)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/RAG_LEARNING_LOOP_SPEC.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/RAG_LEARNING_LOOP_SPEC.md).
 
 Le système stocke non seulement des prix, mais le *contexte absolu* d'une prise de décision et de son résultat.
 

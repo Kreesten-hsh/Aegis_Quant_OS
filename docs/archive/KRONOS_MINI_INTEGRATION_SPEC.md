@@ -1,4 +1,6 @@
-# Spécification — Intégration Kronos-mini (Sprint AI-08)
+# Integration Spec: Kronos-mini Foundation Model (Historical Archive)
+
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit la spécification initiale de Kronos-mini. Son intégration est actuellement suspendue et documentée dans [`docs/KRONOS_INTEGRATION_STATUS.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/KRONOS_INTEGRATION_STATUS.md). Consulter [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) pour la traçabilité.
 
 > Ce document répond à "qu'est-ce qu'on fait et où on va" avant d'écrire une ligne de code. Il précède `KRONOS_MINI_IMPLEMENTATION_INSTRUCTIONS.md` (le "comment"). À lire en complément de la section 5 (Kronos) de `GITHUB_INTEGRATION_GUIDE.md`, déjà à jour avec le statut "En évaluation — variante mini uniquement, CPU".
 

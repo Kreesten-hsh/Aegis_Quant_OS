@@ -1,4 +1,6 @@
-# Spécification du Moteur de Raisonnement (Reasoning Engine)
+# Spécification du Moteur de Raisonnement (Historical Archive)
+
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancien moteur de raisonnement. Il est remplacé par l'Agent Cognitif (Module 2). Consulter [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md).
 
 Le Reasoning Engine constitue la couche AI-03 de l'OS Quantitatif Aegis. Il ne prend aucune décision de trading (réservée au Multi-Agent Council). Son rôle exclusif est de digérer la base d'expériences (Experience Memory) pour générer, valider et archiver des règles métiers statistiques ("Knowledge").
 
