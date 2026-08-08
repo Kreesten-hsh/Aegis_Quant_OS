@@ -3,7 +3,7 @@
 - **Statut** : SPÉCIFICATION TECHNIQUE V2.0 (Lot 1)
 - **Date** : 2026-08-08
 - **Composants concernés** : `src/aegis_trade/infrastructure/memory/faiss_store.py`, `src/aegis_trade/infrastructure/memory/basic_embedding.py`, `src/aegis_trade/domain/memory.py`
-- **Dépend me** : ADR 0032 (Pivot Pipeline Cognitif v2.0), `docs/SYSTEM_ARCHITECTURE_V2.md`
+- **Dépend me** : ADR 0032 (Pivot Pipeline Cognitif v2.0), `docs/SYSTEM_ARCHITECTURE.md`
 
 ---
 

@@ -1,7 +1,7 @@
 # Le Pipeline de Décision Aegis
 # Aegis Decision Pipeline Architecture (Historical Archive)
 
-> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancien pipeline de décision. Remplacé par [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md) et l'[`ADR 0032`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancien pipeline de décision. Remplacé par [`docs/SYSTEM_ARCHITECTURE.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE.md) et l'[`ADR 0032`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
 
 > **Règle Fondamentale :** Ce pipeline est la constitution du système. Tout développement d'Aegis Quant OS doit s'y conformer. Le LLM n'intervient jamais dans le chemin critique temps réel.
 

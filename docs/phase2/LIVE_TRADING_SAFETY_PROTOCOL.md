@@ -2,7 +2,7 @@
 
 # Protocole de Sécurité & Garde-Fous (Module 1)
 
-> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Les règles de sécurité, de risque et de kill switch décrites dans ce protocole s'appliquent de manière absolue dans le **Module 1 (Orchestrateur Déterministe)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md).
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Les règles de sécurité, de risque et de kill switch décrites dans ce protocole s'appliquent de manière absolue dans le **Module 1 (Orchestrateur Déterministe)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE.md).
 
 > # ⛔ AVERTISSEMENT — NE PAS EXÉCUTER CETTE PROCÉDURE (2026-07-31)
 >

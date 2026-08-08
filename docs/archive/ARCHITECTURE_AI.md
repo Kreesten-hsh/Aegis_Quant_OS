@@ -1,6 +1,6 @@
 # AI System Architecture (Phase 2 Historical Archive)
 
-> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancienne architecture globale IA. Remplacé par [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md) et l'[`ADR 0032`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Ce document décrit l'ancienne architecture globale IA. Remplacé par [`docs/SYSTEM_ARCHITECTURE.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE.md) et l'[`ADR 0032`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md).
 
 # Architecture de la Couche d'Intelligence (AI Layer)
 

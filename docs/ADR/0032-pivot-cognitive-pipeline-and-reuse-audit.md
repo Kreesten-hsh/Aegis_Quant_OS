@@ -60,5 +60,5 @@ Pour éviter toute réécriture superflue (Conformité Directive AGENTS.md §2 e
 ## 4. Conséquences et Prochaines Étapes
 
 1. **Aucun code applicatif** n'est produit dans ce sprint (Sprint Documentaire).
-2. Rédaction des spécifications d'ingénierie V2.0 (`SYSTEM_ARCHITECTURE_V2.md`, `RAG_LEARNING_LOOP_SPEC.md`, `DEMO_EXIT_CRITERIA.md`).
+2. Rédaction des spécifications d'ingénierie V2.0 (`SYSTEM_ARCHITECTURE.md`, `RAG_LEARNING_LOOP_SPEC.md`, `DEMO_EXIT_CRITERIA.md`).
 3. Les sprints ultérieurs mettront en œuvre l'assemblage du pipeline sémantique et la validation empirique sur $N \ge 100$ trades.

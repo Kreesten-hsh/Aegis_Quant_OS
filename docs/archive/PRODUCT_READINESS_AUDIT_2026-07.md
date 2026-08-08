@@ -1,4 +1,6 @@
-# AEGIS QUANT OS — PRODUCT READINESS AUDIT
+# AEGIS QUANT OS — PRODUCT READINESS AUDIT (Historical Archive)
+
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Audit de maturité initial conservé pour la traçabilité historique. Consulter [`docs/SYSTEM_ARCHITECTURE.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE.md) et [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) pour l'état v2.0.
 
 ## 1. Réponse à votre question fondamentale : Sommes-nous sur le bon chemin ?
 **OUI. Absolument.**

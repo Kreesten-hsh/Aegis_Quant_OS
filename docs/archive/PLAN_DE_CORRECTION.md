@@ -1,6 +1,7 @@
-# PLAN DE CORRECTION — Aegis Quant OS
+# Plan de Correction d'Aegis Quant OS — 2026-07-31 (Historical Archive)
 
-**Date** : 2026-07-31
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Plan de correction du 31 juillet 2026 conservé pour la traçabilité historique des lots d'ingénierie exécutés.
+
 **Branche** : `claude-code-takeover`
 **Source** : `docs/refont/AUDIT_COMPLET_2026-07-31.md` (verdict NO-GO, 21 bloquants P0–P3)
 **Statut** : **proposé, non exécuté.** Aucun lot ne démarre sans validation explicite.

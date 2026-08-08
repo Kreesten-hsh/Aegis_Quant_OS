@@ -2,7 +2,7 @@
 
 # Spécification du Vote et Veto du Council (Module 1)
 
-> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Les règles de vote et de veto présentées ci-dessous restent réutilisées dans le **Module 1 (Orchestrateur Déterministe)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE_V2.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE_V2.md).
+> **Note de mise à jour Pivot v2.0 (ADR 0032)** : Les règles de vote et de veto présentées ci-dessous restent réutilisées dans le **Module 1 (Orchestrateur Déterministe)** du pipeline v2.0. Voir [`docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md) et [`docs/SYSTEM_ARCHITECTURE.md`](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/SYSTEM_ARCHITECTURE.md).
 
 Ce document décrit la mathématique d'agrégation, la résolution des conflits et les droits de veto de l'AI-05.
 

@@ -1,6 +1,7 @@
-# AUDIT COMPLET — AEGIS QUANT OS
+# Audit complet d'Aegis Quant OS — 2026-07-31 (Historical Archive)
 
-**Date** : 2026-07-31
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : Audit de mise en conformité du 31 juillet 2026 conservé à titre de registre historique d'ingénierie.
+
 **Branche** : `claude-code-takeover` (aucun travail sur `main`)
 **Périmètre** : `src/aegis_trade/`, `frontend/`, `docs/`, `tests/`, `scripts/`, `deploy/`, historique git complet
 **Verdict global** : **NO-GO** — le système ne fonctionne pas de bout en bout. Aucune couche n'est validée au sens du pipeline `CLAUDE.md`.

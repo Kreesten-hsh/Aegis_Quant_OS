@@ -1,4 +1,6 @@
-# État du chantier « mise en conformité des docs » — 2026-07-31
+# État du chantier « mise en conformité des docs » — 2026-07-31 (Historical Archive)
+
+> **DOC ARCHIVÉ (Pivot v2.0 - ADR 0032)** : État du chantier de mise en conformité documentaire (Juillet - Août 2026) conservé pour la traçabilité historique.
 
 > **Rôle de ce fichier :** permettre à une session repartant d'un contexte vide de reprendre le chantier
 > sans rien redemander. Il ne contient aucune information nouvelle sur le code — tout le fond est dans

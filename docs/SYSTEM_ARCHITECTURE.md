@@ -1,79 +1,127 @@
-# Architecture Système — Aegis Quant OS
+# Spécification d'Architecture Système V2.0 — Pipeline Cognitif Sémantique
 
-Aegis Quant OS repose sur une **Architecture Hexagonale (Ports et Adapters)** couplée au **Domain Driven Design (DDD)**. 
-L'objectif est d'isoler strictement la logique de trading (Domain & Engine) des détails d'implémentation externes (Data Providers, Brokers, LLMs, UIs). 
-Les frameworks externes (Qlib, OpenBB) ne sont que des moteurs spécialisés, ils ne possèdent jamais la logique métier.
+- **Statut** : SPÉCIFICATION TECHNIQUE V2.0 (Lot 1)
+- **Date** : 2026-08-08
+- **Contexte technique** : Architecture globale à 4 modules, découplage Clean Architecture, sécurité du chemin critique.
+- **Dépend de** : ADR 0002 (Clean Architecture), ADR 0012 (AI Council Pattern), ADR 0032 (Pivot Pipeline Cognitif v2.0), `docs/LLM_INFRASTRUCTURE.md`
 
-## Pipeline Quantitatif Officiel
+---
 
-Le schéma ci-dessous illustre le flux de données validé, de bout en bout.
+## 1. Schéma d'Architecture Général V2.0
 
-```mermaid
-graph TD
-    %% Source
-    OpenBB[OpenBB] -->|Market Data| MarketDataPipeline[Market Data Pipeline]
-    
-    %% Stockage Local
-    MarketDataPipeline --> DataLake[(Data Lake Parquet)]
-    
-    %% Calculs Propriétaires
-    DataLake --> FeatureEngine[Feature Engine Aegis]
-    FeatureEngine --> FeatureStore[(Feature Store)]
-    
-    %% Recherche et Backtest
-    FeatureStore --> AlphaResearch[Alpha Research Engine]
-    AlphaResearch --> EventDrivenBacktester[Event-Driven Backtester]
-    
-    %% Validation Scientifique
-    EventDrivenBacktester --> ValidationFramework[Institutional Validation Framework]
-    
-    %% Accélérateur ML
-    ValidationFramework -.-> Qlib[Microsoft Qlib]
-    FeatureStore -.-> Qlib
-    
-    %% Exécution
-    ValidationFramework --> PaperTrading[Paper Trading]
-    PaperTrading --> LiveTrading[Live Trading]
-    
-    %% Passerelle Broker
-    LiveTrading --> Gateway[MT5 / vn.py Gateway]
-    Gateway --> Broker[(Broker)]
-    
-    %% Dashboard
-    Dashboard((Dashboard Local)) -.->|Supervise| EventDrivenBacktester
-    Dashboard -.->|Supervise| LiveTrading
-    
-    classDef domain fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#fff;
-    classDef external fill:#475569,stroke:#94a3b8,stroke-width:1px,color:#fff;
-    classDef transverse fill:#166534,stroke:#22c55e,stroke-width:2px,color:#fff;
-    
-    class FeatureEngine,AlphaResearch,EventDrivenBacktester,PaperTrading,LiveTrading domain;
-    class OpenBB,Qlib,Gateway,Broker external;
-    class Dashboard transverse;
+```text
+ ┌──────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                MODULE 2 : AGENT COGNITIF                                │
+ │                                                                                          │
+ │   ┌───────────────────────┐        ┌────────────────────────┐      ┌─────────────────┐   │
+ │   │ Context Aggregator    │ -----> │ LLM Reasoning Engine   │ ---> │ Trade Intent    │   │
+ │   │ (Market + Regimes)    │        │ (Ollama / vLLM local)  │      │ (JSON Proposal) │   │
+ │   └───────────▲───────────┘        └───────────▲────────────┘      └────────┬────────┘   │
+ └───────────────┼────────────────────────────────┼────────────────────────────┼────────────┘
+                 │                                │                            │
+                 │                    Top-k RAG Experience                     │
+                 │                    (Cosine Similarity)                      │
+                 │                                │                            │
+ ┌───────────────┼────────────────────────────────┴────────────────────────────┼────────────┐
+ │               │             MODULE 3 : BOUCLE RAG & MÉMOIRE                │            │
+ │               │                                                             │            │
+ │   ┌───────────┴───────────┐        ┌────────────────────────┐               │            │
+ │   │ Trade Outcome Logger  │ -----> │ FaissVectorStore       │               │            │
+ │   │ (P&L Net, Context)    │        │ (Index vectoriel)      │               │            │
+ │   └───────────────────────┘        └────────────────────────┘               │            │
+ └─────────────────────────────────────────────────────────────────────────────┼────────────┘
+                                                                               │
+                                                                               ▼
+ ┌──────────────────────────────────────────────────────────────────────────────────────────┐
+ │                           MODULE 1 : ORCHESTRATEUR DÉTERMINISTE                          │
+ │                                                                                          │
+ │   ┌──────────────────────────────────────────────────────────────────────────────────┐   │
+ │   │  ÉVALUATION ET VETO DU RISK GATE & MULTI-AGENT COUNCIL                           │   │
+ │   │  - Contrôle des limites de capital (RiskGate)                                    │   │
+ │   │  - Veto déterministe impératif MultiAgentCouncil (Liquidity/Execution >= 0.8)   │   │
+ │   │  * APPLIQUÉ STRICTEMENT APRÈS LA PROPOSITION LLM — REJET FINAL ET ABSOLU *        │   │
+ │   └────────────────────────────────────────┬─────────────────────────────────────────┘   │
+ │                                            │                                             │
+ │                                            ▼                                             │
+ │   ┌──────────────────────────────────────────────────────────────────────────────────┐   │
+ │   │  ÉXÉCUTION BROKER (SimulatedBroker / DerivGateway / VNPY)                        │   │
+ │   └──────────────────────────────────────────────────────────────────────────────────┘   │
+ └────────────────────────────────────────────┬─────────────────────────────────────────────┘
+                                              │
+                                              ▼
+ ┌──────────────────────────────────────────────────────────────────────────────────────────┐
+ │                            MODULE 4 : INTERFACE D'OBSERVATION                            │
+ │                                                                                          │
+ │   - Métriques d'inférence (LLMMetrics JSON)                                              │
+ │   - Télémétrie en temps réel (Dashboard local / WebSocket)                               │
+ └──────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Les Couches Majeures
+---
 
-### 1. Market Data Pipeline & Data Lake
-Extrait la donnée brute via OpenBB, la valide et la stocke de manière performante au format Parquet pour éviter de re-télécharger l'historique en boucle.
+## 2. Description Détaillée des 4 Modules
 
-### 2. Feature Engine (100% Propriétaire)
-Calcule les indicateurs techniques (EMA, RSI, MACD, etc.) en pur Python/Pandas/Numpy. Les dépendances externes comme TA-Lib ou Qlib ne sont **jamais** utilisées ici. Aegis possède sa propre mathématique.
+S'appuyant sur la carte de réutilisation scellée dans l'[ADR 0032 §3](file:///mnt/WindowsData/Aegis%20Quant%20OS/docs/ADR/0032-pivot-cognitive-pipeline-and-reuse-audit.md), chaque module réutilise le code existant sans duplication.
 
-### 3. Alpha Research Engine
-Évalue la puissance prédictive des features (IC Pearson, IC Spearman, Information Ratio) générées par le Feature Engine pour trier le bruit du signal.
+### Module 1 : Orchestrateur Déterministe (Contrôle et Exécution)
 
-### 4. Event-Driven Backtester
-Le moteur de simulation qui intègre le `PortfolioEngine` (Sizing) et le `GlobalRiskManager` (Kill Switch). Il rejoue l'historique tick par tick ou barre par barre.
+Ce module détient l'autorité ultime d'exécution. Il héberge les garde-fous déterministes et la gestion du risque.
 
-### 5. Institutional Validation Framework
-Le laboratoire scientifique de validation. Il orchestre le Backtester sur de multiples scénarios (Walk-Forward, Hold-Out, Multi-Market, Monte Carlo) pour évaluer la robustesse statistique et économique d'une stratégie et générer un score global, avant de l'approuver pour la production ou le ML.
+- **Composants Réutilisés** :
+  - `Orchestrator` : `src/aegis_trade/application/paper_trading/orchestrator.py` (Boucle d'événements et dispatch).
+  - `MultiAgentCouncil` & `AgentVote` : `src/aegis_trade/domain/council.py:1-85` (Agrégation déterministe et gestion des votes).
+  - `RiskGate` : `src/aegis_trade/engine/risk_gate.py:1-95` (Limites de drawdown et d'exposition capital).
+  - `SimulatedBroker` / `DerivGateway` : `src/aegis_trade/infrastructure/brokers/simulated_broker.py:1-90` (Passerelle broker).
+- **Composants à Écrire** :
+  - `CognitiveProposalConsumer` : Adaptateur recevant les propositions sémantiques JSON du Module 2 pour conversion en demandes d'ordre normées.
+- **Dépendances** : Consomme les intentions émise par le Module 2 ; transmet le statut d'exécution et le P&L au Module 3.
 
-### 6. Microsoft Qlib (Accélérateur)
-Utilisé **uniquement** pour la recherche et l'entraînement de modèles de Machine Learning. Qlib consomme le Feature Store d'Aegis, il ne produit pas ses propres features. Il n'est déployé que sur des stratégies ayant survécu à la Validation Institutionnelle.
+> [!IMPORTANT]
+> **Coexistence et Ordre des Vétos (Principe de Sécurité Règle 2)** :
+> Le `MultiAgentCouncil` (Module 1, déterministe) et l'Agent Cognitif (Module 2, sémantique) sont deux composants strictement distincts.
+> 1. L'Agent Cognitif (Module 2) émet une **proposition d'intention de trade**.
+> 2. Le `MultiAgentCouncil` et le `RiskGate` (Module 1) évaluent ensuite cette proposition.
+> 3. Si `LiquidityAgent` ou `ExecutionAgent` émet un vote `WAIT` avec une confiance $\ge 0.8$, ou si la limite de risque est franchie, la proposition du LLM est **immédiatement rejetée**. Ce rejet déterministe est **final, irrévocable, et non négociable**.
 
-### 7. Execution Gateway
-La couche anti-corruption pour communiquer avec les brokers finaux (vn.py, MT5).
+---
 
-### 8. Dashboard (Centre de Contrôle)
-Une interface de supervision locale permettant de lire l'état de l'Equity, du Drawdown, des positions et du Risk Manager. Aucune logique métier n'y réside.
+### Module 2 : Agent Cognitif (Raisonnement Sémantique)
+
+Ce module formule les intentions stratégiques en analysant le contexte de marché et les leçons tirées du passé.
+
+- **Composants Réutilisés** :
+  - `OllamaAdapter` : `src/aegis_trade/infrastructure/llm/adapters/ollama_adapter.py:1-110` (Adaptateur d'inférence LLM locale).
+  - `LLMProviderFactory` : `src/aegis_trade/infrastructure/llm/factory.py:1-50` (Factory de fournisseurs).
+  - `DecisionCache` : `src/aegis_trade/infrastructure/cache/decision_cache.py:1-80` (Cache de déduplication).
+  - Templates de prompt : `src/aegis_trade/prompts/` (Gestion des structures de prompts).
+- **Composants à Écrire** :
+  - `CognitiveReasoningEngine` : Assemblage du contexte sémantique, invocation du LLM avec prompt RAG, et extraction du JSON d'intention (`TradeIntent`).
+  - Template de prompt `cognitive_agent_v1.md` : Définition des règles de décision sémantique.
+- **Dépendances** : Interroge le Module 3 (Boucle RAG) pour récupérer les souvenirs k-NN ; émet vers le Module 1.
+
+---
+
+### Module 3 : Boucle RAG & Mémoire d'Expérience
+
+Ce module stocke et recherche les expériences passées pour alimenter le raisonnement de l'Agent Cognitif.
+
+- **Composants Réutilisés** :
+  - `FaissVectorStore` : `src/aegis_trade/infrastructure/memory/faiss_store.py:1-120` (Stockage vectoriel et recherche par similarité cosinus).
+  - `BasicEmbedding` : `src/aegis_trade/infrastructure/memory/basic_embedding.py:1-60` (Génération des embeddings sémantiques).
+  - `MemoryEntry` : `src/aegis_trade/domain/memory.py:1-50` (Structure immuable du journal d'expérience).
+- **Composants à Écrire** :
+  - `ExperienceMemoryManager` : Gestionnaire haut niveau d'enregistrement et de requêtage RAG.
+- **Dépendances** : Reçoit les confirmations d'exécutions et P&L du Module 1 ; fournit le top-k au Module 2.
+
+---
+
+### Module 4 : Interface d'Observation (Télémétrie et Monitoring)
+
+Ce module assure la visibilité temps réel sur le comportement du pipeline cognitif.
+
+- **Composants Réutilisés** :
+  - `LLMMetrics` : `src/aegis_trade/infrastructure/llm/metrics.py:1-75` (Journalisation structurée JSON des métriques LLM).
+  - Dashboard Frontend : `frontend/` (Interface utilisateur d'observation local).
+- **Composants à Écrire** :
+  - `TelemetryBroadcaster` : Publication en temps réel des métriques de décision et d'état de la mémoire RAG.
+- **Dépendances** : Écoute passivement les événements des Modules 1, 2 et 3.
