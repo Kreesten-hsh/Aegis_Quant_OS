@@ -1,86 +1,104 @@
-# Aegis Quant OS 🛡️📈
+# Aegis Quant OS
 
 ![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Architecture](https://img.shields.io/badge/architecture-Clean%20%7C%20Hexagonal-orange)
 ![Status](https://img.shields.io/badge/research-concluded%20(216%20hypotheses%20tested)-red)
 
-**Aegis Quant OS** est un système de trading quantitatif et d'évaluation d'hypothèses d'alpha d'inspiration institutionnelle. Le système sépare rigoureusement la logique de domaine, les moteurs de risque, les garde-fous d'exécution et les adapteurs d'infrastructure (LLMs, Open-Source ML, Moteurs de Backtest, Broker Gateways).
+Aegis Quant OS est une plateforme de recherche quantitative et d'évaluation d'hypothèses d'alpha en Clean Architecture / Domain-Driven Design (DDD). Le système isole la logique du domaine financier (actifs, positions, signaux, gestion des risques) des adaptateurs d'infrastructure (moteurs de backtest, gateways de données, modélisation ML, agrégation multi-agents).
 
 ---
 
-## 📌 STATUT ACTUEL DE LA RECHERCHE (AOUT 2026)
+## Contexte du Projet
 
-> [!IMPORTANT]
-> **Rigueur Scientifique & Transparence Absolue (Règle Anti-Survente)** :
-> - **Hypothèses Évaluées** : **216 hypothèses** (Signaux M1/M5, Indicateurs Techniques univariés, Features Macro FRED DFII10/DXY, Microstructure Spike, Positionnement CFTC COT 088691, Trend-Following Crypto 24/7, ML Cross-Sectional Ranking).
-> - **Signaux Validés en Production** : **0 / 216 (0.0%)**.
-> - Tous les signaux directionnels univariés usuels sur séries de prix individuelles ont été formellement **réfutés** après déduction des péages d'exécution et correction des tests multiples FDR / Bonferroni (ADR 0025 à ADR 0031).
+Le projet Aegis Quant OS a été conçu pour appliquer une méthodologie scientifique rigoureuse à l'exploration d'alphas systématiques sur plusieurs classes d'actifs (indices synthétiques, métaux précieux, crypto-monnaies). L'objectif initial était de construire un pipeline de décision automatisé appuyé sur un filtrage strict des coûts d'exécution, une correction statistique pour tests multiples et une architecture modulaire réutilisable.
 
 ---
 
-## 🏛️ CE QUI EST OPÉRATIONNEL ET ROBUSTE
+## Résultat de la Recherche Quantitative (Bilan Final)
 
-1. **Architecture Hexagonale & DDD** : Couche Domaine isolée de toute dépendance tierce, garantissant l'absence de fuite d'infrastructure.
-2. **Garde-Fous d'Exécution & Péage (Execution Budget Gates)** :
-   - Mesure exacte du péage d'exécution ($1.859\text{ bps}$ sur Deriv / Or et $10.0\text{ bps}$ sur Crypto Spot).
-   - Validation stricte par horizon $H$ (ADR 0021).
-3. **Multi-Agent Council avec Veto de Liquidité/Exécution (`orchestrator.py`)** :
-   - Moteur d'agrégation de votes multi-agents avec pondération dynamique.
-   - Veto impératif émis dès que `LiquidityAgent` ou `ExecutionAgent` vote `WAIT` avec une confiance $\ge 0.8$, réinitialisant la taille de position à zéro.
-4. **Integration des Frameworks Open-Source (Matrice `BUILD_VS_REUSE.md`)** :
-   - Connecteurs pour `VectorBT`, `Microsoft Qlib`, `Freqtrade` et `pandas-ta-classic`.
-5. **Jeux de Données Validés & Audités** :
-   - `XAUUSD` Dukascopy 11.6 ans (D1 et H4) à alignement causal strict.
-   - Données CFTC COT filtrées sur le code exact **`088691`** (Gold COMEX 100 oz Standard).
+Conformément au principe de transparence et de rigueur scientifique (règle anti-survente), le projet a procédé à l'évaluation systématique de **216 hypothèses d'alpha**.
 
----
+### Tableau Récapitulatif des 216 Hypothèses Évaluées
 
-## 🛠️ TECHNOLOGIES ET FRAMEWORKS
+| Famille d'hypothèses | Périmètre & Instruments | Nb Hypothèses | Statut | Référence ADR |
+|---|---|---|---|---|
+| Signaux M1/M5 Univariés | Synthétiques Deriv (Crash 1000, Boom 1000) | 180 | 0 validées (Réfutées post-coût d'exécution) | ADR 0019, 0020, 0024 |
+| Indicateurs Techniques Or | XAUUSD M1 (GOLD-01) | 12 | 0 validées (IC non significatif hors-échantillon) | ADR 0025 |
+| Features Macroéconomiques | XAUUSD M1 (FRED DFII10, DXY) | 12 | 0 validées (|t-stat| <= 1.93) | ADR 0026, 0027, 0028 |
+| Cointégration & Positionnement H4/D1 | XAUUSD H4/D1, COT COMEX 088691, DXY | 8 | 0 validées (Cointégration spurie, P&L net négatif) | ADR 0029, 0030 |
+| Trend-Following Crypto & ML Ranking | BTC/USD, ETH/USD 24/7, LightGBM Cross-Sectional | 4 | 0 validées (Sur-ajustement & friction 10 bps) | ADR 0031 |
+| **Total** | **4 familles de méthodes, 3 classes d'actifs** | **216** | **0 / 216 (0.0% validées en production)** | **ADR 0017 à 0031** |
 
-- **Langage** : Python 3.11
-- **Architecture** : Clean Architecture / Ports & Adapters
-- **Frameworks Quantitatifs** : `vectorbt`, `pandas-ta-classic`, `scipy`, `numpy`, `pandas`, `lightgbm`
-- **Infrastructure LLM** : Ollama (Adapteur local déterministe avec cache SHA-256)
+Tous les signaux directionnels univariés usuels sur séries temporelles de prix et de macroéconomie ont été formellement réfutés après déduction des péages d'exécution réels (1.859 bps A/R sur Deriv/Or et 10.0 bps sur Crypto Spot) et application des corrections FDR (False Discovery Rate) et Bonferroni.
 
 ---
 
-## ⚙️ INSTALLATION ET EXÉCUTION DES TESTS
+## Statut de Clôture du Projet
 
-1. **Cloner le dépôt** :
-   ```bash
-   git clone https://github.com/votre-username/AegisQuantOS.git
-   cd AegisQuantOS
-   ```
+Le projet de recherche Aegis Quant OS est **officiellement clos**.
 
-2. **Créer et activer un environnement virtuel** :
-   ```bash
-   python3.11 -m venv .venv
-   source .venv/bin/activate
-   ```
+La réfutation empirique des 216 hypothèses constitue un résultat scientifique valide et documenté : l'absence d'edge exploitable net de frais d'exécution sur les horizons et univers étudiés démontre l'inaptitude des signaux testés à générer du P&L réel. Aucune stratégie n'a atteint le jalon de validation AI-07b (engagement de capital réel).
 
-3. **Installer les dépendances** :
-   ```bash
-   pip install -e .
-   ```
-
-4. **Exécuter la suite complète de tests** :
-   ```bash
-   pytest -v
-   ```
+Le projet n'est pas poursuivi sous forme de trading actif ni de pivot cognitif/LLM.
 
 ---
 
-## 📂 STRUCTURE DU DÉPÔT ET DECISIONS (ADRs)
+## Composants Réutilisables et Architecture
 
-- **`src/aegis_trade/`** : Code source (Clean Architecture : `domain/`, `application/`, `infrastructure/`).
-- **`docs/ADR/`** : Registre complet des décisions d'architecture et de recherche (0001 à 0031).
-- **`docs/refont/BUILD_VS_REUSE.md`** : Matrice de réutilisation des frameworks Open-Source.
-- **`docs/research/`** : Rapports de recherche quantitatifs probants.
-- **`docs/archive/`** : Archives historiques et métadonnées brutes.
+Bien que la recherche d'alpha n'ait pas produit de signal exploitable en production, le projet laisse un ensemble de briques architecturales et logicielles réutilisables :
+
+1. **Architecture Clean / Domain-Driven Design (DDD)** :
+   - Couche Domaine (`src/aegis_trade/domain/`) isolée de toute dépendance logicielle externe.
+   - Entités métiers immuables (`Capital`, `Position`, `TradeRecord`, `RiskGate`).
+2. **Pipelines de Données et Ingestion Multi-Sources** :
+   - Pipeline d'ingestion paginé Deriv WebSocket/REST (`DerivHistoricalData`).
+   - Audit et alignement causal strict du jeu de données XAUUSD Dukascopy (11.6 ans d'historique D1/H4).
+   - Module de filtrage des données de positionnement CFTC COT sur le code exact COMEX Gold (`088691`).
+3. **Multi-Agent Council avec Veto de Liquidité/Exécution** :
+   - Moteur d'agrégation de votes multi-agents (`src/aegis_trade/application/council/orchestrator.py`).
+   - Mécanisme de veto strict déclenché par une confiance >= 0.8 sur l'agent de liquidité ou d'exécution, forçant l'exposition à zéro.
+4. **Discipline Méthodologique et Outillage Quantitatif** :
+   - Moteur de calcul du péage d'exécution et des fenêtres de tradabilité (`src/aegis_trade/domain/tradability.py`).
+   - Registre d'ADRs (Architecture Decision Records 0001 à 0031) documentant chaque décision et rejet avec preuves reproductibles.
 
 ---
 
-## 🎯 PROCHAINE ÉTAPES DE RECHERCHE
+## Installation et Exécution des Tests
 
-Prochaine direction en cours d'arbitrage — voir discussion stratégique.
+### Prérequis
+
+- Python 3.11
+- `uv` (recommandé) ou `venv` standard
+
+### Procédure d'installation
+
+```bash
+git clone https://github.com/votre-username/AegisQuantOS.git
+cd AegisQuantOS
+uv venv
+source .venv/bin/activate
+uv pip install -e . pytest
+```
+
+### Exécution des tests
+
+```bash
+pytest -v
+```
+
+---
+
+## Structure du Dépôt et Registre ADR
+
+- `src/aegis_trade/` : Code source principal (Clean Architecture : `domain/`, `application/`, `infrastructure/`).
+- `docs/ADR/` : Registre complet des 31 décisions d'architecture et de recherche (ADR 0001 à 0031).
+- `docs/refont/BUILD_VS_REUSE.md` : Matrice d'évaluation et de réutilisation des bibliothèques open-source.
+- `docs/research/` : Rapports d'audit et de recherche quantitatives.
+- `scripts/` : Outillage de recherche, d'ingestion et de diagnostic.
+
+---
+
+## Licence
+
+Ce projet est distribué sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.

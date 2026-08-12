@@ -1,11 +1,15 @@
 # DIRECTIVE PERMANENTE — AEGIS QUANT OS
 
+> [!NOTE]
+> **STATUT DU PROJET : CLOS ET ARCHIVÉ (AOUT 2026)**
+> La campagne de recherche quantitative est conclue (216 hypothèses testées, 0 validées en production). Les règles ci-dessous sont conservées à titre d'archive de la gouvernance appliquée pendant le projet.
+
 ## Philosophie de développement
 
-Nous développons désormais comme une équipe quantitative institutionnelle. Chaque modification doit respecter les principes suivants :
+Nous développons comme une équipe quantitative institutionnelle. Chaque modification doit respecter les principes suivants :
 
 ### 1. Une seule direction
-La roadmap devient la seule source de vérité. On ne change plus de direction parce qu'une nouvelle idée paraît intéressante. Toute nouvelle idée est ajoutée dans un backlog. Elle ne modifie jamais le sprint en cours.
+La roadmap est la seule source de vérité. Toute nouvelle idée est ajoutée dans un backlog. Elle ne modifie jamais le sprint en cours.
 
 ### 2. Pas de détour
 Interdiction de :
